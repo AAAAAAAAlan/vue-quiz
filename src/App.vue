@@ -2,7 +2,8 @@
   <div id="app">
     <oQuiz 
     titleColor="#fafafa" 
-    quizTitle="Title Placeholder" />
+    quizTitle="History Quiz"
+    />
   </div>
 </template>
 
