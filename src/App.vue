@@ -37,7 +37,7 @@ export default {
 
 <style>
 body{
-    background: #F5F6FA;
+    background: #121212;
 }
 #app {
   margin-top: 50px;

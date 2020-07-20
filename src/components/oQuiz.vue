@@ -140,7 +140,7 @@ export default {
           width: 400px;
           height: auto;
           border-radius 4px
-          
+        // 
       
       .question-container
         .question-title
