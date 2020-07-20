@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <oQuiz 
-    titleColor="#fafafa" 
+    titleColor="#19193E" 
     quizTitle="History Quiz"
     :quiz="quiz"
     />
@@ -36,7 +36,11 @@ export default {
 </script>
 
 <style>
+body{
+    background: #F5F6FA;
+}
 #app {
+  margin-top: 50px;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

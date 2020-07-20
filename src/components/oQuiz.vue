@@ -1,7 +1,8 @@
 <template>
   <div class="oQuiz">
     <div v-if="finished" class="quiz-finish">
-      <h1>{{`Congrats! Your results are: ${this.summary.reduce((a,b) => a + b)} out of ${this.summary.length}`}}</h1>
+      <h1>{{`Congrats! Your results are: `}}</h1>
+      <h2 class="result">{{`${this.summary.reduce((a,b) => a + b)} out of ${this.summary.length}`}}</h2>
     </div>
     <div
       class="quiz-container"
@@ -104,18 +105,25 @@ export default {
     justify-content center
     
     .quiz-finish
-      border 2px solid #cf6679
-      border-radius 3px
       padding 10px
       background-color #292929
-      color #fafafa
+      border 1px solid #EEF3F6
+      box-sizing border-box
+      border-radius 4px
+      background #FFFFFF
       width: 400px;
+      font-size 9pt
+
+      .result
+        text-align right
 
     .quiz-container
-      border 2px solid #cf6679
-      border-radius 3px
       padding 10px
       background-color #292929
+      border 1px solid #EEF3F6
+      box-sizing border-box
+      border-radius 4px
+      background #FFFFFF
 
 
       .quiz-title
@@ -131,11 +139,13 @@ export default {
         .quiz-img
           width: 400px;
           height: auto;
+          border-radius 4px
           
       
       .question-container
         .question-title
-          color #ffffff
+          color #19193E
+          text-align center
 
         .btn-container
           display flex
@@ -146,19 +156,21 @@ export default {
             border-radius 3px
             padding 10px
             margin 0 10% 20px 10%
-            background-color #cf6679
+            background-color #ffffff
             font-size 12pt
-            color #292929
             font-weight bold
             user-select none
             outline none
+            border: 1px solid #4D1ED3;
+            box-sizing: border-box;
+            border-radius: 4px;
 
             &:hover
-              background-color rgb(132, 24, 44) 
+              background #4D1ED3 
               color white
 
             &:active
-              background-color rgb(132, 24, 44) 
+              bbackground #4D1ED3
   
 .modal
   position absolute
@@ -170,11 +182,11 @@ export default {
   transition: width 2s, height 2s, background-color 2s, transform 2s;
 
 .modal-incorrect
-    background-color #cf6679
+    background-color #FC1946
     
 
 .modal-correct
-  background-color #03dac6
+  background-color #72EBBA
 
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s;
