@@ -1,7 +1,11 @@
 <template>
-  <div v-if="currentCuestion" class="oQuiz">
+  <div class="oQuiz">
+    <div v-if="finished" class="quiz-finish">
+      <h1>{{`Congrats! Your results are: ${this.summary.reduce((a,b) => a + b)} out of ${this.summary.length}`}}</h1>
+    </div>
     <div
       class="quiz-container"
+      v-if="finished === false"
     >
       <h1
         :style="{color: titleColor}"
@@ -14,15 +18,18 @@
       </div>
       <div class="question-container">
         <h2 class="question-title">{{quiz[currentQuestion].question }}</h2>
-        <button
-          @click="answerQuestion(answer)" 
-          v-for="answer in quiz[currentQuestion].answers" 
-          :key="answer.text" 
-          class="button"
-          :disabled="isDisabled"
-        >
-        {{answer.text}}
-        </button>
+        <div class="btn-container">
+          <button
+            @click="answerQuestion(answer)" 
+            v-for="answer in quiz[currentQuestion].answers" 
+            :key="answer.text" 
+            class="button"
+            :disabled="isDisabled"
+          >
+            {{answer.text}}
+          </button>
+        </div>
+
       </div>
     </div>
     <transition name="fade"> 
@@ -40,29 +47,17 @@ export default {
     msg: String,
     titleColor: String,
     quizTitle: String,
+    quiz: Object
   },
 
   data() {
     return {
-      quiz: [
-          {img: 'https://img.tsargrad.tv/cache/b/8/-peterburg.jpg/w720h405fill.jpg', question: 'Who built Saint Petersburg?', answers: [
-            {text: 'Napoleo', isCorrect: true},
-            {text: 'Peter The Great', isCorrect: false}
-            ]
-          },
-          {img: 'logo.png', question: 'Who killed John Kennedy', answers: [
-            {text: 'Gorbachev', isCorrect: true},
-            {text: 'Lenin', isCorrect: false}
-            ]
-          },
-      ],
-
       currentQuestion: 0,
-      
       showResult: false,
       result: null,
       isDisabled: false,
-      summary: []
+      summary: [],
+      finished: false
     }               
   },
   methods: {
@@ -78,7 +73,7 @@ export default {
             this.isDisabled = false
             if(this.currentQuestion < (this.quiz.length - 1)){
               this.currentQuestion++
-            } else this.currentQuestion = 0 // must move user to summary 
+            } else this.finished = true
             this.summary.push(1)
           }, 1000)
           break;
@@ -93,7 +88,7 @@ export default {
             this.isDisabled = false
             if(this.currentQuestion < (this.quiz.length - 1)){
               this.currentQuestion++
-            } else this.currentQuestion = 0 // must move user to summary 
+            } else this.finished = true
             this.summary.push(0)
           }, 1000)
           break;
@@ -107,6 +102,14 @@ export default {
   .oQuiz
     display flex
     justify-content center
+    
+    .quiz-finish
+      border 2px solid #cf6679
+      border-radius 3px
+      padding 10px
+      background-color #292929
+      color #fafafa
+      width: 400px;
 
     .quiz-container
       border 2px solid #cf6679
@@ -114,22 +117,48 @@ export default {
       padding 10px
       background-color #292929
 
+
       .quiz-title
         margin 0
         padding 0
         font-size 3rem
         color #cf6679
-
+        
       .quiz-img-container
         display flex
         justify-content center
         
         .quiz-img
-          width 100%
+          width: 400px;
+          height: auto;
+          
       
       .question-container
         .question-title
           color #ffffff
+
+        .btn-container
+          display flex
+          justify-content center
+
+          button
+            border none
+            border-radius 3px
+            padding 10px
+            margin 0 10% 20px 10%
+            background-color #cf6679
+            font-size 12pt
+            color #292929
+            font-weight bold
+            user-select none
+            outline none
+
+            &:hover
+              background-color rgb(132, 24, 44) 
+              color white
+
+            &:active
+              background-color rgb(132, 24, 44) 
   
 .modal
   position absolute

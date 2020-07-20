@@ -3,6 +3,7 @@
     <oQuiz 
     titleColor="#fafafa" 
     quizTitle="History Quiz"
+    :quiz="quiz"
     />
   </div>
 </template>
@@ -14,7 +15,23 @@ export default {
   name: 'App',
   components: {
     oQuiz
-  }
+  },
+  data() {
+    return {
+     quiz: [
+          {img: 'https://img.tsargrad.tv/cache/b/8/-peterburg.jpg/w720h405fill.jpg', question: 'Who built Saint Petersburg?', answers: [
+            {text: 'Napoleo', isCorrect: true},
+            {text: 'Peter The Great', isCorrect: false}
+            ]
+          },
+          {img: 'https://cdn.britannica.com/s:800x450,c:crop/32/172732-138-941D1E2C/overview-John-F-Kennedy.jpg', question: 'Who killed John Kennedy', answers: [
+            {text: 'Gorbachev', isCorrect: true},
+            {text: 'Lenin', isCorrect: false}
+            ]
+          },
+      ],
+    }
+  },
 }
 </script>
 
